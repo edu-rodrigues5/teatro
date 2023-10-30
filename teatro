@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>teatro</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script lang = "JavaScript">
+        var fileiras, i,i2,c;
+        fileiras = new Array(15);
+        for(i=0; i<fileiras.length; ++i)
+        {
+            fileiras[i] = new Array(40);
+        }
+
+       for(i=0; i < 15; ++i)
+       {
+        
+            for(i2=0; i2 < 40; ++i2)
+            {
+                fileiras[i][i2] = i2
+            }
+       }
+
+      
+    </script>
+</head>
+<body>
+    <script lang = "JavaScript">
+    c= 1;
+    document.write("<table border='1'>");
+        for(i=0; i < 15; ++i)
+            {
+                document.write("<tr>");
+                    for(i2=0; i2 < 40; ++i2)
+                    {
+                        document.write( "<td>" + c + "</td>");
+                        c++;
+                        fileiras[i][i2]= c;
+                    }
+                    document.write("</tr>");
+            }
+    document.write("</table>");
+
+    </script>
+</body>
+</html>
