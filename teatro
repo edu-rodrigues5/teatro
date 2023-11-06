@@ -7,11 +7,11 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script lang = "JavaScript">
-        var fileiras, i,i2,c;
-        fileiras = new Array(15);
-        for(i=0; i<fileiras.length; ++i)
+        var f,l,c,pre,i,i2,l2,c2, a= 0;
+        f = new Array(15);
+        for(i=0; i<f.length; ++i)
         {
-            fileiras[i] = new Array(40);
+            f[i] = new Array(40);
         }
 
        for(i=0; i < 15; ++i)
@@ -19,30 +19,89 @@
         
             for(i2=0; i2 < 40; ++i2)
             {
-                fileiras[i][i2] = i2
+                f[i][i2] = i2
             }
        }
 
-      
+       function troca(l,c ){
+        if(a==0)
+        {
+        l2 =l;
+        c2 = c;
+        document.getElementById(l + "-" + c).src = "emopol.png";
+        document.getElementById("cortina").src = "aberto.png";
+        a++;
+        }
+        else
+        {
+            document.getElementById(l2 + "-" + c2).src = "poltronaroxa.png";
+            document.getElementById(l + "-" + c).src = "emopol.png";
+            l2 =l;
+            c2 = c;
+        }
+
+      }
+
+     
+
+      function pol(l ,c ){
+        troca(l, c);
+       pre = 0; 
+        if(l <= 4)
+        {
+           pre = 50;
+        }
+
+         if((l >= 5) && (l <= 9))
+        {
+           pre = 40;
+        }
+
+        if((l >= 10) && (l <= 14))
+        {
+           pre = 30;
+        }
+
+        if((c >= 10) && (l <= 30))
+        {
+           pre = pre + pre/10;
+        }
+
+        document.getElementById("display").value = "valor do ingresso: R$"+pre+",00";
+
+      }
+
     </script>
 </head>
 <body>
     <script lang = "JavaScript">
-    c= 1;
-    document.write("<table border='1'>");
-        for(i=0; i < 15; ++i)
+
+    document.write("<table  align = 'center'><tr><td>");
+    document.write("<img width='1900' height='400' src='fechado.png' id='cortina'>");
+    document.write("</td></tr></table>");
+
+    document.write("<table border='1'><tr><td>");
+    document.write("<input type = 'txt' id = 'display' value = 'valor do ingresso: ' readonly >");
+    document.write("</td></tr></table>");
+
+    
+    document.write("<table align = 'center'>");
+        for(l=0; l < 15; ++l)
             {
                 document.write("<tr>");
-                    for(i2=0; i2 < 40; ++i2)
+                    for(c=0;  c< 40; ++c)
                     {
-                        document.write( "<td>" + c + "</td>");
-                        c++;
-                        fileiras[i][i2]= c;
+                        document.write( "<td><img width='30' height='30' src='poltronaroxa.png' id='"+ l + "-" + c+ "' onclick='pol(" + l + "," + c + ")'></td>");
+                       
                     }
-                    document.write("</tr>");
+                    document.write("<tr>");
             }
     document.write("</table>");
 
+
+
     </script>
+
+   
 </body>
 </html>
