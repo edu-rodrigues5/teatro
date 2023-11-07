@@ -7,7 +7,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script lang = "JavaScript">
-        var f,l,c,pre,i,i2,l2,c2, a= 0;
+        var f,l,c,pre = 0,i,i2, a=0;
         f = new Array(15);
         for(i=0; i<f.length; ++i)
         {
@@ -19,47 +19,36 @@
         
             for(i2=0; i2 < 40; ++i2)
             {
-                f[i][i2] = i2
+                f[i][i2] = 0
             }
        }
 
        function troca(l,c ){
-        if(a==0)
-        {
-        l2 =l;
-        c2 = c;
         document.getElementById(l + "-" + c).src = "emopol.png";
         document.getElementById("cortina").src = "aberto.png";
-        a++;
-        }
-        else
-        {
-            document.getElementById(l2 + "-" + c2).src = "poltronaroxa.png";
-            document.getElementById(l + "-" + c).src = "emopol.png";
-            l2 =l;
-            c2 = c;
-        }
-
+       
       }
 
      
 
       function pol(l ,c ){
         troca(l, c);
-       pre = 0; 
+
+        if(f[l][c]==0)
+        {
         if(l <= 4)
         {
-           pre = 50;
+           pre += 50;
         }
 
          if((l >= 5) && (l <= 9))
         {
-           pre = 40;
+           pre += 40;
         }
 
         if((l >= 10) && (l <= 14))
         {
-           pre = 30;
+           pre += 30;
         }
 
         if((c >= 10) && (l <= 30))
@@ -67,10 +56,26 @@
            pre = pre + pre/10;
         }
 
-        document.getElementById("display").value = "valor do ingresso: R$"+pre+",00";
+        document.getElementById("display").value = "R$"+pre;
+        f[l][c] = 1;
+        a++;
+        }
 
       }
 
+      function tot(){
+        if(a==1)
+        {
+            document.write("Você reservou "+ a +" poltrona que custa R$" + pre);
+        }
+        else if(a>1)
+        {
+        document.write("Você reservou "+ a +" poltronas que custam R$" + pre);
+        }
+        else if(a<1){
+        document.write("Você não reservou poltronas :(");
+        }
+      }
     </script>
 </head>
 <body>
@@ -81,7 +86,8 @@
     document.write("</td></tr></table>");
 
     document.write("<table border='1'><tr><td>");
-    document.write("<input type = 'txt' id = 'display' value = 'valor do ingresso: ' readonly >");
+    document.write("Valor ingresso</td><td>");
+    document.write("<input type = 'txt' id = 'display' value = '' readonly >");
     document.write("</td></tr></table>");
 
     
@@ -98,7 +104,7 @@
             }
     document.write("</table>");
 
-
+    document.write("<input type = 'button' value = 'total' onclick='tot();' >")
 
     </script>
 
